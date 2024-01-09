@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load widget_tweaks %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,900;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/login_register.css">
+    <link rel="stylesheet" href="{% static 'styles/login_register.css' %}">
+    <script src="https://unpkg.com/htmx.org@1.9.2" integrity="sha384-L6OqL9pRWyyFU3+/bjdSri+iIphTN/bvYyM37tICVyOJkWZLpP2vGn6VUEXgzg6h" crossorigin="anonymous"></script>
+</head>
+<body>
+    {% if type == 'login' %}
+        <div class="wrapper">
+            <a href = "{% url 'home' %}" class = 'icon-close'>
+                <i class="fa-solid fa-xmark"></i>
+            </a>
+            <form action="{% url 'login' %}" method = "POST">
+                {% csrf_token %}
+                <h1>Login</h1>
+                <div class="input-box">
+                    <!-- <input type="text" > -->
+                    <!-- {{form.username}} -->
+                    {% render_field form.username placeholder="Username" autofocus=True hx-post="/otakusite/check_username/" hx-trigger='keyup throttle:2s' hx-target='#username-error' %}
+                    <i class="fa-solid fa-user"></i>
+                    <div id="username-error"></div>
+                </div>
+                <div class = "input-box">
+                    <!-- <input type="password" required placeholder="Password"> -->
+                    {% render_field form.password placeholder='Password' type='password' required=True %}
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <div class="remember-forgot">
+                    <label>
+                        <input type="checkbox"> Remember me
+                    </label>
+                    <a href="#">Forgot password?</a>
+                </div>
+                <button type = "submit" class = "btn">Login</button>
+
+                <div class = "register-link">
+                    <p>Don't have a account
+                        <a href="{% url 'register' %}">Register</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    {% else %}
+
+    <!-- register -->
+        <div class="wrapper">
+            <h1>Register</h1>
+            <a href = "{% url 'home' %}" class = 'icon-close'>
+                <i class="fa-solid fa-xmark"></i>
+            </a>
+            <form action="" method = 'POST'>
+                {% csrf_token %}
+                <div class="input-box">
+                    <!-- <input type="text" placeholder="Username" autofocus> -->
+                    <!-- {{form.username}} -->
+                    {% render_field form.username placeholder='Username' %}
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class = "input-box">
+                    <!-- <input type="password" required placeholder="Password"> -->
+                    <!-- {{form.password1}} -->
+                    {% render_field form.password1 placeholder='Password' %}
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <div class = "input-box">
+                    <!-- <input type="password" required placeholder="Password"> -->
+                    <!-- {{form.password2}} -->
+                    {% render_field form.password2 placeholder='Password confeam' %}
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <div class="remember-forgot">
+                    <label>
+                        <input type="checkbox"> Remember me
+                    </label>
+                    <a href="#">Forgot password?</a>
+                </div>
+
+                <div class = "register-link">
+                    <p>Do you already have an account
+                        <a href="{% url 'login' %}">Login</a>
+                    </p>
+                </div> 
+                <button type = "submit" class = "btn">Login</button>
+
+            </form>
+        </div>
+        {% endif %}
+    </body>
+</html>

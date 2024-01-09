@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+    {% load widget_tweaks %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'styles/upload_manga.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,900;1,300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class = "wrapper">
+        <a href = "{% url 'home' %}" class = 'icon-close'>
+            <i class="fa-solid fa-xmark"></i>
+        </a>
+        <form action="" method="POST" enctype="multipart/form-data">
+            <h1>Upload manga</h1>
+            {% csrf_token %}
+            <div class = "input-box">
+                <!-- <input type="text" placeholder="Name Manga"> -->
+                {% render_field form.title placeholder='Name Manga' name='namechapter' %}
+                <i class="fa-regular fa-file-code"></i>
+            </div>
+            <div class="input-box">
+                <!-- <input type="text" placeholder="Tags"> -->
+                {% render_field form.tags placeholder='Tags' %}
+                <i class="fa-solid fa-tags"></i>
+            </div>
+            <div class="input-box">
+                <!-- <input type="text" placeholder="Secondary Name"> -->
+                {% render_field form.secondary_name placeholder='Secondary Name' %}
+                <i class="fa-regular fa-file-code"></i>
+            </div>
+            <div class = "description-box">
+                <!-- <textarea placeholder="Decription"></textarea> -->
+                {% render_field form.description placeholder='Description' %}
+                <i class="fa-solid fa-comment"></i>
+            </div>
+            <div class = "select-files">
+                <!-- <input type="file"> -->
+                {% render_field form.image %}
+            </div>
+            <button type = 'submit' class = 'btn'>Submit</button>
+        </form>
+    </div>    
+</body>
+</html>

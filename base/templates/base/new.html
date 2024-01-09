@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/new.css">
+    <link rel="stylesheet" href="styles/swiper-bundle.min.css">
+</head>
+<body>
+    <nav>
+        <div class = "nav-bar">
+            <div style = "display: flex;align-items: center;column-gap: 2rem;">
+                <i class="fa-solid fa-bars Sidebar-open"></i>
+                <span class="logo navlogo"><a href="">OtakuSite</a></span>
+                <div class = "menu">
+                    <div class = "logo-toggle">
+                        <span class="logo"><a href="">OtakuSite</a></span>
+                        <i class="fa-solid fa-xmark Sidebar-close"></i>
+                    </div>
+                    <ul>
+                        <li> 
+                            <a href="" class = "link">
+                                <i class="fa-solid fa-house"></i>
+                                home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" class = "link">
+                                <i class="fa-solid fa-bars"></i>
+                                manga list
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" class = "link">
+                                <i class="fa-solid fa-clock-rotate-left"></i>
+                                history
+                            </a>
+                        </li>
+                        <li class = "dropdown">
+                            <a href="" class = "link"><i class="fa-solid fa-tags"></i> genres</a>
+                            <div class = "category-menu">
+                                <div class = "category">
+                                    <div><a href = "">slice of live</a></div>
+                                    <div><a href = "">slice of live</a></div>
+                                    <div><a href = "">slice of live</a></div>
+                                    <div><a href = "">slice of live</a></div>
+                                    <div><a href = "">slice of live</a></div>
+
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="" class = "link">following</a>
+                        </li>
+                        <li class = "login-register oflist" >
+                            <a href=""  class = "link"><i class="fa-solid fa-user"></i> login</a>
+                        </li>
+                        <!-- <li>
+                            <div class = "user-page userofmenu">
+                                <div class = "dropdown-user-page" data-dropdown>
+                                    <img src="images/imgs-web/the frangrant flower/user.jpg" class = "link-page-user"  data-dropdown-button>
+                                    <div class = "dropdown-user" id  = "submenu">
+                                        <div><a href=""><i class="fa-solid fa-user"></i> profile</a></div>
+                                        <div><a href=""><i class="fa-solid fa-bookmark"></i> theo doi</a></div>
+                                        <div><a href=""><i class="fa-solid fa-glasses"></i> lich su</a></div>
+                                        <div><a href=""><i class="fa-solid fa-bell"></i> thong bao</a></div>
+                                        <div><a href="" id = "logout-link"><i class="fa-solid fa-right-from-bracket"></i> logout</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li> -->
+                    </ul> 
+                </div>
+            </div>
+            <div class="darklight-searchbox">
+                <div class = "dark-light">
+                    <i class="fa-regular fa-moon moon"></i>
+                    <i class="fa-regular fa-sun sun"></i>
+                </div>
+                <div class = "search-box">
+                    <div class = "searchToggle">
+                        <i class="fa-solid fa-magnifying-glass search"></i>
+                        <i class="fa-solid fa-xmark close"></i>
+                    </div>
+                    <div class = "search-field">
+                        <form action="">
+                            <input type="text" placeholder="Search ...">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </form>
+                    </div>
+                </div>
+                <div class="manga-results" id = 'results'>
+                    <div class="manga-render-card">
+                        <a href="">
+                            <div class="manga-render">
+                                <div class="manga-render-image">
+                                    <img src="images/img-manga/akane-banashi.jpg" alt="">
+                                </div>
+                            </div>
+                            <div class="manga-render-infomation">
+                                <a href="" class = 'manga-render-title'>Akane Banashi</a>
+                                <a href="" class = 'manga-render-chapter-new'>Chapter 98</a>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="manga-render-card">
+                        <a href="">
+                            <div class="manga-render">
+                                <div class="manga-render-image">
+                                    <img src="images/img-manga/akane-banashi.jpg" alt="">
+                                </div>
+                            </div>
+                            <div class="manga-render-infomation">
+                                <a href="" class = 'manga-render-title'>Akane Banashi</a>
+                                <a href="" class = 'manga-render-chapter-new'>Chapter 98</a>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="manga-render-card">
+                        <a href="">
+                            <div class="manga-render">
+                                <div class="manga-render-image">
+                                    <img src="images/img-manga/akane-banashi.jpg" alt="">
+                                </div>
+                            </div>
+                            <div class="manga-render-infomation">
+                                <a href="" class = 'manga-render-title'>Akane Banashi</a>
+                                <a href="" class = 'manga-render-chapter-new'>Chapter 98</a>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="manga-render-card">
+                        <a href="">
+                            <div class="manga-render">
+                                <div class="manga-render-image">
+                                    <img src="images/img-manga/akane-banashi.jpg" alt="">
+                                </div>
+                            </div>
+                            <div class="manga-render-infomation">
+                                <a href="" class = 'manga-render-title'>Akane Banashi</a>
+                                <a href="" class = 'manga-render-chapter-new'>Chapter 98</a>
+                            </div>
+                        </a>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            <div class = "login-register outlist">
+                <button>
+                    <a href="login_page.html">login</a>
+                </button>
+                <button>
+                    <a href="">register</a>
+                </button>
+            </div> 
+            <!-- <div class = "user-page">
+                <div class = "dropdown-user-page" data-dropdown>
+                    <img src="images/imgs-web/the frangrant flower/user.jpg" class = "link-page-user"  data-dropdown-button>
+                    <div class = "dropdown-user" id  = "submenu">
+                        <div><a href=""><i class="fa-solid fa-user"></i> profile</a></div>
+                        <div><a href=""><i class="fa-solid fa-bookmark"></i> theo doi</a></div>
+                        <div><a href=""><i class="fa-solid fa-glasses"></i> lich su</a></div>
+                        <div><a href=""><i class="fa-solid fa-bell"></i> thong bao</a></div>
+                        <div><a href="" id = "logout-link"><i class="fa-solid fa-right-from-bracket"></i> logout</a></div>
+                    </div>
+                </div>
+            </div> -->
+
+        </div>
+    </nav>
+
+    <div class="slide-container swiper">
+        <div class="slide-content">
+            <div class="slide-header">
+                <p><i class="fa-solid fa-fire-flame-curved"></i> Truyện đang hot</p>
+            </div>
+            <div class="car-wrapper swiper-wrapper">
+                <div class="card swiper-slide">
+                    <div class="card-image">
+                        <div class = "info-popular_manga">
+                            <a href="">chapter 20</a>
+                        </div>
+                        <img src="images/img-manga/2.5D.jpg" alt="" class="card-img">
+                        <div>
+                        </div>
+                    </div>
+                    <div class = "manga-popular-title">
+                        <a href = "">Sự Quyến Rủ Của 2.5D</a>
+                    </div>
+                </div>
+                <div class="card swiper-slide">
+                    <div class="card-image">
+                        <div class = "info-popular_manga">
+                            <a href="">chapter 37</a>
+                        </div>
+                        <img src="images/img-manga/flower-blooms.jpg" alt="" class="card-img">
+                        <div>
+                        </div>
+                    </div>
+                    <div class = "manga-popular-title">
+                        <a href = "">kusuriya no hitorioto</a>
+                    </div>
+                </div>
+                <div class="card swiper-slide">
+                    <div class="card-image">
+                        <div class = "info-popular_manga">
+                            <a href="">chapter 40</a>
+                        </div>
+                        <img src="images/img-manga/akane-banashi.jpg" alt="" class="card-img">
+                        <div>
+                        </div>
+                    </div>
+                    <div class = "manga-popular-title">
+                        <a href = "">Akane Banashi</a>
+                    </div>
+                </div>
+                <div class="card swiper-slide">
+                    <div class="card-image">
+                        <div class = "info-popular_manga">
+                            <a href="">chapter 14</a>
+                        </div>
+                        <img src="images/img-manga/hon-the-nhat-nheo-cua-toi-chi-dang-yeu-khi-o-nha.jpg" alt="" class="card-img">
+                    </div>
+                    <div class = "manga-popular-title">
+                        <a href = "">hôn thê nhạt nhẽo của tôi chỉ đáng yêu khi ở nhà</a>
+                    </div>
+                </div>
+                <div class="card swiper-slide">
+                    <div class="card-image">
+                        <div class = "info-popular_manga">
+                            <a href="">chapter 17</a>
+                        </div>
+                        <img src="images/img-manga/Horimiya.jpg" alt="" class="card-img">
+                        <div>
+                        </div>
+                    </div>
+                    <div class = "manga-popular-title">
+                        <a href = "">horimiya</a>
+                    </div>
+                </div>
+                <div class="card swiper-slide">
+                    <div class="card-image">
+                        <div class = "info-popular_manga">
+                            <a href="">chapter 110</a>
+                        </div>
+                        <img src="images/img-manga/laid-back-camp.jpg" alt="" class="card-img">
+                        <div>
+                        </div>
+                    </div>
+                    <div class = "manga-popular-title">
+                        <a href = "">laid back camp</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+
+    </div>
+
+    <!-- main -->
+
+    <main>
+        <div class = "manga-items-container">
+            <div class="new-manga-updated">
+                <p class = "new-manga-updated-title">truyen moi cap nhat</p>
+                <div class = "new-manga">
+                    <div class="manga-card">
+                        <div class = "manga-image">
+                            <span>1 hours ago</span>
+                            <a href = ""><img src="images/img-manga/2.5D.jpg" alt=""></a>
+                        </div>
+                        <div class = "manga-thumnail-title">
+                            <a href="manga_room.html">SỰ QUYẾN RỦ CỦA 2.5D</a>
+                        </div>
+                        <div class = "list-new-chapter">
+                            <ul>
+                                <li><a href="">chapter 1411</a><span>20 ngay truoc</span></li>
+                                <li><a href="">chapter 1411</a><span>20 ngay truoc</span></li>
+                                <li><a href="">chapter 1411</a><span>20 ngay truoc</span></li>
+                            
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="manga-card">
+                        <div class = "manga-image">
+                            <span>1 hours ago</span>
+                            <a href = ""><img src="images/img-manga/2.5D.jpg" alt=""></a>
+                        </div>
+                        <div class = "manga-thumnail-title">
+                            <a href="">SỰ QUYẾN RỦ CỦA 2.5D</a>
+                        </div>
+                        <div class = "list-new-chapter">
+                            <ul>
+                                <li><a href="">chapter 1411</a><span>20 ngay truoc</span></li>
+                                <li><a href="">chapter 1411</a><span>20 ngay truoc</span></li>
+                                <li><a href="">chapter 1411</a><span>20 ngay truoc</span></li>
+                            
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="manga-card">
+                        <div class = "manga-image">
+                            <span>1 hours ago</span>
+                            <a href = ""><img src="images/img-manga/2.5D.jpg" alt=""></a>
+                        </div>
+                        <div class = "manga-thumnail-title">
+                            <a href="">SỰ QUYẾN RỦ CỦA 2.5D</a>
+                        </div>
+                        <div class = "list-new-chapter">
+                            <ul>
+                                <li><a href="">chapter 1411</a><span>20 ngay truoc</span></li>
+                                <li><a href="">chapter 1411</a><span>20 ngay truoc</span></li>
+                                <li><a href="">chapter 1411</a><span>20 ngay truoc</span></li>
+                            
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="manga-card">
+                        <div class = "manga-image">
+                            <span>1 hours ago</span>
+                            <a href = ""><img src="images/img-manga/2.5D.jpg" alt=""></a>
+                        </div>
+                        <div class = "manga-thumnail-title">
+                            <a href="">SỰ QUYẾN RỦ CỦA 2.5D</a>
+                        </div>
+                        <div class = "list-new-chapter">
+                            <ul>
+                                <li><a href="">chapter 1411</a><span>20 ngay truoc</span></li>
+                                <li><a href="">chapter 1411</a><span>20 ngay truoc</span></li>
+                                <li><a href="">chapter 1411</a><span>20 ngay truoc</span></li>
+                            
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="manga-card">
+                        <div class = "manga-image">
+                            <span>1 hours ago</span>
+                            <a href = ""><img src="images/img-manga/2.5D.jpg" alt=""></a>
+                        </div>
+                        <div class = "manga-thumnail-title">
+                            <a href="">SỰ QUYẾN RỦ CỦA 2.5D</a>
+                        </div>
+                        <div class = "list-new-chapter">
+                            <ul>
+                                <li><a href="">chapter 1411</a><span>20 ngay truoc</span></li>
+                                <li><a href="">chapter 1411</a><span>20 ngay truoc</span></li>
+                                <li><a href="">chapter 1411</a><span>20 ngay truoc</span></li>
+                            
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+                <div class= "pagination-container">
+                    <div class = "pagination">
+                        <button class="btn"><i class="fa-solid fa-angles-left"></i></button>
+                        <button class = "btn"><i class="fa-solid fa-angle-left"></i></button>
+                        <ul>
+                            <li class="link-page"><a href="">1</a></li>
+                            <li class="link-page active"><a href="">2</a></li>
+                            <li class="link-page"><a href="">3</a></li>
+                            <li class="link-page"><a href="">4</a></li>
+                            <li class="link-page"><a href="">5</a></li>
+                        </ul>
+                        <button class = "btn"><i class="fa-solid fa-angle-right"></i></button>
+                        <button class="btn"><i class="fa-solid fa-angles-right"></i></button>
+                    </div>
+                </div>
+
+            </div>  
+            <div class = "sidebar-items">
+                <div class = "manga-status-container">
+                    <div class="status-header">
+                        <p>truyen dang theo doi</p>
+                        <a href="">xem tat  ca</a>
+                    </div>
+                    <div class="status-manga-items">
+                        <div class="status-manga">
+                            <div class="status-manga-image">
+                                <a href=""><img src="images/img-manga/akane-banashi.jpg" alt=""></a>
+                            </div>
+                            <div class="status-manga-thumnail">
+                                <a href="" class = "status-manga-thumnail_title">akane banashi</a>
+                                <div class="new-updated-chapter">
+                                    <a href="">chapter</a> <span>1 gio truoc</span>
+                                </div>
+                                <a href="" class = "continue-reading">doc tiep chapter</a>
+                            </div>
+                        </div>
+                        <div class="status-manga">
+                            <div class="status-manga-image">
+                                <a href=""><img src="images/img-manga/akane-banashi.jpg" alt=""></a>
+                            </div>
+                            <div class="status-manga-thumnail">
+                                <a href="" class = "status-manga-thumnail_title">akane banashi</a>
+                                <div class="new-updated-chapter">
+                                    <a href="">chapter</a> <span>1 gio truoc</span>
+                                </div>
+                                <a href="" class = "continue-reading">doc tiep chapter</a>
+                            </div>
+                        </div>
+                        <div class="status-manga">
+                            <div class="status-manga-image">
+                                <a href=""><img src="images/img-manga/akane-banashi.jpg" alt=""></a>
+                            </div>
+                            <div class="status-manga-thumnail">
+                                <a href="" class = "status-manga-thumnail_title">akane banashi</a>
+                                <div class="new-updated-chapter">
+                                    <a href="">chapter</a> <span>1 gio truoc</span>
+                                </div>
+                                <a href="" class = "continue-reading">doc tiep chapter</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class = "manga-status-container">
+                    <div class="status-header">
+                        <p>lich su doc truyen</p>
+                        <a href="">xem tat  ca</a>
+                    </div>
+                    <div class="status-manga-items">
+                        <div class="status-manga">
+                            <div class="status-manga-image">
+                                <a href=""><img src="images/img-manga/akane-banashi.jpg" alt=""></a>
+                            </div>
+                            <div class="status-manga-thumnail">
+                                <a href="" class = "status-manga-thumnail_title">akane banashi</a>
+                                <div class="new-updated-chapter">
+                                    <a href="">chapter</a> <span>1 gio truoc</span>
+                                </div>
+                                <a href="" class = "continue-reading">doc tiep chapter</a>
+                            </div>
+                        </div>
+                        <div class="status-manga">
+                            <div class="status-manga-image">
+                                <a href=""><img src="images/img-manga/akane-banashi.jpg" alt=""></a>
+                            </div>
+                            <div class="status-manga-thumnail">
+                                <a href="" class = "status-manga-thumnail_title">akane banashi</a>
+                                <div class="new-updated-chapter">
+                                    <a href="">chapter</a> <span>1 gio truoc</span>
+                                </div>
+                                <a href="" class = "continue-reading">doc tiep chapter</a>
+                            </div>
+                        </div>
+                        <div class="status-manga">
+                            <div class="status-manga-image">
+                                <a href=""><img src="images/img-manga/akane-banashi.jpg" alt=""></a>
+                            </div>
+                            <div class="status-manga-thumnail">
+                                <a href="" class = "status-manga-thumnail_title">akane banashi</a>
+                                <div class="new-updated-chapter">
+                                    <a href="">chapter</a> <span>1 gio truoc</span>
+                                </div>
+                                <a href="" class = "continue-reading">doc tiep chapter</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class = "user-comments-container">
+                    <div class="comment-header">
+                        <p>binh luan moi</p>
+                    </div>
+                    <div class="comments-items">
+                        <div class="comments-of-manga">
+                            <a href="" class = "comment-manga-title">new prince of tennis</a><a href="" class = "comment-manga-chapter">chapter</a>
+                        </div>
+                        <div class="comments-of-user">
+                            <div class = "user-image">
+                                <a href=""><img src="images/img-manga/user_1.jpg" alt=""></a>
+                            </div>
+                            <div class="comment-of-user-content">
+                                <div class = "user-name-time">
+                                    <p class = "name">Đại Phú Bà</p>
+                                    <p class = "time">time</p>
+                                </div>
+                                <div class="comments-content">
+                                    <p>Ko biết thanh niên có sơ múi dc gì chưa hay là cho hút chùa</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="comments-items">
+                        <div class="comments-of-manga">
+                            <a href="" class = "comment-manga-title">new prince of tennis</a><a href="" class = "comment-manga-chapter">chapter</a>
+                        </div>
+                        <div class="comments-of-user">
+                            <div class = "user-image">
+                                <a href=""><img src="images/img-manga/user_1.jpg" alt=""></a>
+                            </div>
+                            <div class="comment-of-user-content">
+                                <div class = "user-name-time">
+                                    <p class = "name">Đại Phú Bà</p>
+                                    <p class = "time">time</p>
+                                </div>
+                                <div class="comments-content">
+                                    <p>Ko biết thanh niên có sơ múi dc gì chưa hay là cho hút chùa</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="comments-items">
+                        <div class="comments-of-manga">
+                            <a href="" class = "comment-manga-title">new prince of tennis</a><a href="" class = "comment-manga-chapter">chapter</a>
+                        </div>
+                        <div class="comments-of-user">
+                            <div class = "user-image">
+                                <a href=""><img src="images/img-manga/user_1.jpg" alt=""></a>
+                            </div>
+                            <div class="comment-of-user-content">
+                                <div class = "user-name-time">
+                                    <p class = "name">Đại Phú Bà</p>
+                                    <p class = "time">time</p>
+                                </div>
+                                <div class="comments-content">
+                                    <p>Ko biết thanh niên có sơ múi dc gì chưa hay là cho hút chùa</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class = "footer-container">
+            <div class = "me-info">
+                <span class="logo"><a href="">OtakuSite</a></span>
+                <p>Email: vanp2100@gmail.com</p>
+                <a href="">Chính sách bảo mật</a>
+            </div>
+    
+            <div class = "text">
+                <p>
+                    Mọi thông tin và hình ảnh trên website đều được sưu tầm trên Internet. Chúng tôi không sở hữu hay chịu trách nhiệm bất kỳ thông tin nào trên web này. Nếu làm ảnh hưởng đến cá nhân hay tổ chức nào, khi được yêu cầu, chúng tôi sẽ xem xét và gỡ bỏ ngay lập tức.
+                </p>
+            </div>
+    
+        </div>
+    </footer>
+
+    <!-- navb -->
+    <script src = "styles/home.js"></script>
+
+    <!-- slide -->
+    <script src = "styles/swiper-bundle.min.js"></script>
+    <script src = "styles/script_swiper.js"></script>
+
+    <!-- dropdown user js -->
+    <script src = "styles/dropdown_user.js" defer></script>
+</body>
+</html>

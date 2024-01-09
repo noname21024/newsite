@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load widget_tweaks %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'styles/upload_chapter.css' %}">
+</head>
+<body>
+    {% if type == 'chapter' %}
+        <div class="wrapper">
+            <p>Create chapter</p>
+            <span class = 'close-btn'>
+                <a href="{% url 'manga-room' name %}"><i class="fa-solid fa-xmark"></i></a>
+            </span>
+            <form action="" method = 'POST' >
+                {% csrf_token %}
+                <div class="input-box">
+                    <input type="text" placeholder="Enter Chapter You Want Create" name='chapter'>
+                    <!-- {% render_field form.chapter placeholder='Enter Chapter You Want Create' name='chapter' %} -->
+                    <i class="fa-solid fa-pen-nib"></i>
+                </div>
+                <div class="input-box">
+                    <input type="text" placeholder="Chapter Name" name='namechapter'>
+                    <!-- {% render_field form.name placeholder='Chapter Name' name='namechapter' %} -->
+                    <i class="fa-solid fa-signature"></i>
+                </div>
+                <!-- <input type="file" multiple class = "customfile" name = 'uploadfiles'> -->
+                <button type = 'submit' class = 'btn'>
+                    Create
+                </button>
+            </form>
+        </div>
+    {% else %}
+        <div class="wrapper">
+            <p>Upload Images</p>
+            <span class = 'close-btn'>
+                <a href="{% url 'manga-room' name %}"><i class="fa-solid fa-xmark"></i></a>
+            </span>
+            <form action="" enctype="multipart/form-data" method = 'POST'>
+                {% csrf_token %}
+
+                <!-- <div class="input-box"> -->
+                    <!-- <input type="text" placeholder="Enter Chapter You Want Create">
+                    <i class="fa-solid fa-pen-nib"></i>
+                </div>
+                <div class="input-box">
+                    <input type="text" placeholder="Chapter Name">
+                    <i class="fa-solid fa-signature"></i>
+                </div> -->
+                <input type="file" multiple class = "customfile" name = 'uploadfiles'>
+                <button type = 'submit' class = 'btn'>
+                    Create
+                </button>
+            </form>
+        </div>
+    {% endif %}
+</body>
+</html>

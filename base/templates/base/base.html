@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OtakuSite</title>
+    <link rel="stylesheet" href="{% static 'styles/new.css' %}">
+    <link rel="stylesheet" href = "{% static 'styles/swiper-bundle.min.css' %}" >
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.2" integrity="sha384-L6OqL9pRWyyFU3+/bjdSri+iIphTN/bvYyM37tICVyOJkWZLpP2vGn6VUEXgzg6h" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    {% include 'base/navbar.html' %}
+    {% block content %}
+    
+    {% endblock %}
+    <script src = "{% static 'styles/swiper-bundle.min.js' %}"></script>
+    <script src = "{% static 'styles/script_swiper.js' %}"></script>
+    <script src = "{% static 'styles/home.js' %}"></script>
+    <script src = "{% static 'styles/dropdown_user.js' %}" defer></script>
+    <script src = "{% static 'styles/script.js' %}" defer></script>
+
+    {% include 'base/footer.html' %}
+
+    
+
+</body>
+</html>

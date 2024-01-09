@@ -1,0 +1,66 @@
+{% extends 'base/base.html' %}
+{% block content %}
+    <div class="user-page-container">
+        <div class="nav-of-manga-page">
+            <ul>
+                <li>
+                    <a href="">home</a> / <a href="">list manga</a> / <p>name of manga</p>    
+                </li>
+            </ul>
+        </div>
+        <div class="user-infomation">
+            <div class="sidebar-of-user-page">
+                <div class="user-image">
+                    <div class="image-of-user-in-userpage">
+                        <img src = "{{user.profile.image.url}}" alt="">
+                    </div>
+                    <div class="user-name-of-userpage">
+                        <p>Tài khoản của</p><span>
+                            {{user.username}}
+                        </span>
+                    </div>
+                    <div class="collapse-button">
+                        <button>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="sidebar-items-of-userpage">
+                    <div class="general-information">
+                        <a href="{% url 'user-page' %}"><i class="fa-solid fa-circle-info"></i>Thông tin chung</a>
+                    </div>
+                    <div class="account-information">
+                        <a href="{% url 'change-user-page' %}"><i class="fa-regular fa-id-card"></i>Thông tin tài khoản</a>
+                    </div>
+                    <div class="story-is-following">
+                        <a href="{% url 'follow-manga-userpage' %}"><i class="fa-solid fa-book"></i>Truyen dang theo doi</a>
+                    </div>
+                    <div class="notification">
+                        <a href=""><i class="fa-solid fa-bell"></i>Thông báo</a>
+                    </div>
+                    <div class="logout">
+                        <a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i>Đăng xuất</a>
+                    </div>
+                </div>
+            </div>
+         
+            {% block user-content %}
+
+            {% endblock %}
+           
+        </div>
+    </div>
+    <script>
+        let uploadButton = document.getElementById('uploadimage');
+        let choose_image = document.getElementById('choose-image');
+
+        uploadButton.onchange = () => {
+            let reader = new FileReader();
+            reader.readAsDataURL(uploadButton.files[0]);
+            console.log(uploadButton.files[0]);
+            reader.onload = () => {
+                choose_image.setAttribute('src', reader.result);
+            }
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,120 @@
+{% load static %}
+<nav>
+    <div class = "nav-bar">
+        <div style = "display: flex;align-items: center;column-gap: 2rem;">
+            <i class="fa-solid fa-bars Sidebar-open"></i>
+            <span class="logo navlogo"><a href="{% url 'home' %}">OtakuSite</a></span>
+            <div class = "menu">
+                <div class = "logo-toggle">
+                    <span class="logo"><a href="{% url 'home' %}">OtakuSite</a></span>
+                    <i class="fa-solid fa-xmark Sidebar-close"></i>
+                </div>
+                <ul>
+                    <li> 
+                        <a href="{% url 'home' %}" class = "link">
+                            <i class="fa-solid fa-house"></i>
+                            home
+                        </a>
+                    </li>
+                    <li class = "dropdown">
+                        <a href="" class = "link"><i class="fa-solid fa-tags"></i> genres</a>
+                        <div class = "category-menu">
+                            <div class = "category"">
+                                <div>
+                                    <a href="{% url 'manga-list' %}">Tất cả</a>
+                                </div>
+                                {% for tag in tags %}
+                                    <div><a href="{% url 'manga-list' %}?q={{tag.name}}">{{tag.name}}</a></div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="" class = "link">
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                            history
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class = "link">
+                            <i class="fa-solid fa-bookmark"></i>
+                            follow
+                        </a>
+                    </li>
+                    {% if request.user.is_superuser %}
+                    <li>
+                    <a href="{% url 'upload-manga' %}" class = "link">
+                        <i class="fa-solid fa-book"></i>
+                        add manga</a>
+                        
+                    </li>
+                    {% endif %}
+                    {% if not request.user.is_authenticated %}
+                    <li class = "login-register oflist" >
+                        <a href=""  class = "link"><i class="fa-solid fa-user"></i> login</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <div class = "user-page userofmenu">
+                            <div class = "dropdown-user-page" data-dropdown>
+                                <img src="{{user.profile.image.url}}" class = "link-page-user"  data-dropdown-button>
+                                <div class = "dropdown-user" id  = "submenu">
+                                    <div><a href="{% url 'user-page' %}"><i class="fa-solid fa-user"></i> profile</a></div>
+                                    <div><a href=""><i class="fa-solid fa-bookmark"></i>theo doi</a></div>
+                                    <div><a href=""><i class="fa-solid fa-glasses"></i> lich su</a></div>
+                                    <div><a href=""><i class="fa-solid fa-bell"></i> thong bao</a></div>
+                                    <div><a href="{% url 'logout' %}" id = "logout-link"><i class="fa-solid fa-right-from-bracket"></i> logout</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    {% endif %}
+                </ul> 
+            </div>
+        </div>
+        <div class="darklight-searchbox">
+            <div class = "dark-light">
+                <i class="fa-regular fa-moon moon"></i>
+                <i class="fa-regular fa-sun sun"></i>
+            </div>
+            <div class = "search-box"">
+                <div class = "searchToggle">
+                    <i class="fa-solid fa-magnifying-glass search"></i>
+                    <i class="fa-solid fa-xmark close"></i>
+                </div>
+                <div class = "search-field">
+                    <form action = "{% url 'home' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="text" hx-post = "{% url 'search-manga' %}" hx-trigger = 'keyup change delay:500ms' name = 'search' hx-target = "#results" placeholder="Search ...">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </form>
+                </div>
+                <div id = 'results' class = 'manga-results'></div>
+            </div>
+        </div>
+        {% if request.user.is_authenticated %}
+            <div class = "user-page">
+                <div class = "dropdown-user-page" data-dropdown>
+                    <img src="{{user.profile.image.url}}" class = "link-page-user"  data-dropdown-button>
+                    <div class = "dropdown-user" id  = "submenu">
+                        <div><a href="{% url 'user-page' %}"><i class="fa-solid fa-user"></i> profile</a></div>
+                        <div><a href=""><i class="fa-solid fa-bookmark"></i> theo doi</a></div>
+                        <div><a href=""><i class="fa-solid fa-glasses"></i> lich su</a></div>
+                        <div><a href=""><i class="fa-solid fa-bell"></i> thong bao</a></div>
+                        <div><a href="{% url 'logout' %}" id = "logout-link"><i class="fa-solid fa-right-from-bracket"></i> logout</a></div>
+                    </div>
+                </div>
+            </div> 
+        {% else %}
+            <div class = "login-register outlist">
+                <button>
+                    <a href="{% url 'login' %}">login</a>
+                </button>
+                <button>
+                    <a href="{% url 'register' %}">register</a>
+                </button>
+            </div> 
+        {% endif %}
+
+    </div>
+</nav>

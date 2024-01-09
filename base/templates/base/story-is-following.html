@@ -1,0 +1,42 @@
+{% extends 'base/user_page.html' %}
+{% block user-content %}
+
+<div class="story-follow">
+    <div class="story-follow-header">
+        <p>Truyện đang theo dõi</p>
+        <a href="">Xem tất cả <i class="fa-solid fa-angle-right"></i></a>
+    </div>
+    <div class="story-now-follow">
+        <div class="story-now-follow-header">
+            <p>tên truyện</p>
+            <p>xem gần nhất</p>
+            <p>chapter mới</p>
+        </div>
+        {% for manga in user.manga_follows.all %}
+        <div class="story-now-follow-items">
+            <div class = "manga-infomation-of-userpage">
+                <div class="manga-image-in-userpage">
+                    <img src="{{manga.image.url}}" alt="">
+                </div>
+                <div class="items-name-and-unfollow">
+                    <a href="">{{manga.title|truncatechars:30}}</a>
+                    <form action="" method = 'POST'>
+                        {% csrf_token %}
+                        <input type="hidden" name = 'name' value="{{manga.title}}">
+                        <button class = 'unfollow-manga' name = 'follow' value = 'unfollow'><i class="fa-solid fa-xmark"></i>Bỏ theo dõi</button>
+                    </form>
+                </div>
+            </div>
+            <div class =  "chapter-is-reading">
+                <a href = "">chapter 8</a>
+                <p>25/11/22</p>
+            </div>
+            <div class="latest-chapter">
+                <a href="">chapter {{manga.chapters.first}}</a>
+                <p>{{manga.chapters.first.created|timesince}} ago</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,241 @@
+{% extends 'base/base.html' %}
+{% block content %}
+    <div class="manga-room-container">
+        <div class="manga-infomation">
+            <div class="nav-of-manga-page">
+                <ul>
+                    <li>
+                        <a href="">home</a> / <a href="">list manga</a> / <p>name of manga</p>    
+                    </li>
+                </ul>
+            </div>
+            <div class="manga-title-and-updatetime">
+                <p class = "name-of-manga">
+                    {{manga.title}}
+                </p>
+                <p class = "update-time" style = 'color: black'>
+                    [Cập nhật lúc: 11:24 19/12/2023]
+                </p>
+            </div>
+            <div class="manga-room-infomation">
+                <div class="manga-room-image">
+                    <div class="manga-room-img">
+                        <img src="{{manga.image.url}}" alt=""> 
+                        <!-- fa fa-rss -->
+                    </div>
+                </div>
+                <div class="manga-room-info">
+                    <div class="row-list secondary-name-of-manga">
+                        <p><i class="fa-regular fa-clone"></i> Tên khác</p><p>{{manga.secondary_name}}</p>
+                    </div>
+                    <div class="row-list author-of-manga">
+                        <p><i class="fa-solid fa-user"></i> Tác giả</p> <a href="">Sakaishi Yusaku</a>
+                    </div>
+                    <div class="row-list status-of-manga">
+                        <p><i class="fa-solid fa-rss"></i> Tình trạng</p> <p>Đang tiến hành</p>
+                    </div>
+                    <div class="row-list category-of-manga">
+                        <p><i class="fa-solid fa-tags"></i> Thể loại</p> 
+                        <p class = 'cateory-of-room-manga'>
+                            {% for tag in manga.tags.all %}
+                                <a href="{% url 'manga-list' %}?q={{tag}}">{{tag}}</a> -   
+                            {% endfor %}
+                        </p>
+                    </div>
+                    <div class="row-list views-counts">
+                        <p><i class="fa-solid fa-eye"></i> Xem</p><p>964.333</p>
+                    </div>
+                    <div class="follow-button">
+                        <form action="" method = 'POST'>
+                            {% csrf_token %}
+                            <input type="hidden" name = 'value' value = 'button-follow'>
+                            {% if manga in user.manga_follows.all %}
+                            <button class ="room-btn unfollow"  name = 'follow' value = 'unfollow'><i class="fa-solid fa-xmark fa-lg"></i></i>Bỏ theo dõi</button>
+                            {% else %}
+                            <button class = "room-btn follow" name = 'follow' value = 'follow' ><i class="fa-solid fa-heart"></i>Theo dõi</button>
+                            {% endif %}
+                        </form>
+                        <p><span>27.960</span> Lượt theo dõi</p>
+                    </div>
+                    <div class="manga-room-button">
+                        <a href="{% url 'manga' manga.title first_chapter %}"><button class = "room-btn">Đọc từ đầu</button></a>
+                        <a href="{% url 'manga' manga.title end_chapter %}"><button class = "room-btn">Đọc mới nhất</button></a>
+                        <button class = "room-btn read">Đọc tiếp <i class="fa-solid fa-chevron-right"></i></button>
+                        {% if request.user.is_superuser %}
+                        <a href="{% url 'add-chapter' manga.title %}">
+                            <button class = "room-btn read">Add Chapter <i class="fa-solid fa-book"></i></button>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="manga-description">
+                <div class="manga-description-header">
+                    <p><i class="fa-regular fa-file-lines"></i> Nội Dung</p>
+                </div>
+                <div class="manga-description-content">
+                    <p>
+                        Izuki Tomonari - một học sinh cao trung nghèo, vô tình vướng phải vụ bắt cóc Hinako Konohana - tiểu thư của tập đoàn lớn nhất nhì Nhật Bản. Hinako luôn mang trên mình vẻ ngoài của một thiếu nữ tài giỏi và xinh đẹp, nhưng thực tế cô nàng lại là người lười biếng chẳng có lấy một kỹ năng sống <span class = "read-more-text">
+                            nào. Tuy nhiên, do hoàn cảnh gia đình, cô luôn phải mang chiếc mặt nạ của “Tiểu thư hoàn hảo” ở trường. Với mong muốn bảo vệ cô ấy, Izuki nhận công việc chăm sóc cô. Cuối cùng, Hinako lại bắt đầu chiều chuộng Izuki hết mực.
+                            “Giờ đây… tớ không muốn Izuki phải rời xa tớ.”
+                            Một câu chuyện tình đã bắt đầu, vượt qua một quan hệ chủ - tớ với một nàng công chúa xinh đẹp.
+                        </span>
+                    </p>
+                    <span class = "read-more-btn">Read More ...</span>
+                </div>
+            </div>
+
+            <div class="chapter-list-of-manga-room">
+                <div class="chapter-list-heading">
+                    <p>Số Chương</p>
+                    <p class = "text-algin">Cập Nhật</p>
+                    <p class = "text-algin">Xem</p>
+                </div>
+                <ul>
+                    {% for chapter in chapters %}
+                    <li class="list-chapter-rom">
+                        <a href="{% url 'manga' manga.title chapter %}">Chapter {{chapter}}</a>
+                        <p>{{chapter.created}}</p>
+                        <p>120</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="comment-of-user-in-manga-room">
+                <div class="comment-header">
+                    <p><i class="fa-solid fa-comments"></i> Bình luận <span>({{count}})</span></p>
+                </div>
+                <div class="comment-box">
+                    <form action="" class = "comment-field" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name = 'value' value = 'message'>
+                        <textarea placeholder="Mời bạn thảo luận, vui lòng không spam, share link kiếm tiền, thiếu lành mạnh,... để tránh bị khóa tài khoản" name = 'body'></textarea>
+                        <button type = 'submit'>
+                            submit
+                        </button>
+                    </form>
+                </div>
+                {% for message in messages %}
+                    <div class="comment-user-container-content">
+                        <div class="comment-user-image">
+                            <img src="{{message.user.profile.image.url}}" alt="">
+                        </div>
+                        <div class="comment-items-container">
+                            <div class="infomation-comment-user">
+                                <div class="comment-user-header">
+                                    <p class = "comment-user-name">{{message.user.first_name}}</p>
+                                    {% if message.chapter %}
+                                    <p class= "comment-of-chapter">chapter {{message.chapter}}</p>
+                                    {% endif %}
+                                </div>
+                                <div class="comment-user-content">
+                                    {{message.body}}
+                                </div>
+                            </div>
+                            <div class="comment-items">
+                                <div class="reply-item">
+                                    <i class="fa-solid fa-comment"></i> Trả lời
+                                </div>                                
+                                <div class="like-comment">
+                                    <i class="fa-solid fa-thumbs-up"></i>
+                                </div>
+                                <div class="dislike-comment">
+                                    <i class="fa-solid fa-thumbs-down"></i>
+                                </div>
+                                <div class="violate">
+                                    <i class="fa-solid fa-ellipsis"></i>
+                                </div>
+                                <p class = "time-comment">
+                                    <i class="fa-regular fa-clock"></i> {{message.created|timesince}} ago
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="top-rank-manga-container">
+            <div class="top-rank-manga-heading">
+                <p class="top-rank-heading-items">
+                    top thang
+                </p>
+                <p class="top-rank-heading-items">
+                    top tuan
+                </p>
+                <p class="top-rank-heading-items">
+                    top ngay
+                </p>
+            </div>
+            <div class="top-rank-manga-items">
+                <div class="manga-top-rank">
+                    <div class="rank-in-top-rankbar">
+                        10
+                    </div>
+                    <div class="toprank-manga-image">
+                        <a href=""><img src="saijo-no-osewa-takane-no-hana-darakena-m-5096.jpg" alt="" ></a>
+                    </div>  
+                    <div class="toprank-manga-infomation">
+                        <div class="name-of-toprank-manga">
+                            <a href="">VÕ LUYỆN ĐỈNH PHONG</a>
+                        </div>
+                        <div class="chapter-and-views">
+                            <a href="">chapter 3617</a>
+                            <p><i class="fa-solid fa-eye"></i>23M</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="manga-top-rank">
+                    <div class="rank-in-top-rankbar">
+                        10
+                    </div>
+                    <div class="toprank-manga-image">
+                        <a href=""><img src="saijo-no-osewa-takane-no-hana-darakena-m-5096.jpg" alt="" ></a>
+                    </div>  
+                    <div class="toprank-manga-infomation">
+                        <div class="name-of-toprank-manga">
+                            <a href="">VÕ LUYỆN ĐỈNH PHONG</a>
+                        </div>
+                        <div class="chapter-and-views">
+                            <a href="">chapter 3617</a>
+                            <p><i class="fa-solid fa-eye"></i>23M</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="manga-top-rank">
+                    <div class="rank-in-top-rankbar">
+                        10
+                    </div>
+                    <div class="toprank-manga-image">
+                        <a href=""><img src="saijo-no-osewa-takane-no-hana-darakena-m-5096.jpg" alt="" ></a>
+                    </div>  
+                    <div class="toprank-manga-infomation">
+                        <div class="name-of-toprank-manga">
+                            <a href="">VÕ LUYỆN ĐỈNH PHONG</a>
+                        </div>
+                        <div class="chapter-and-views">
+                            <a href="">chapter 3617</a>
+                            <p><i class="fa-solid fa-eye"></i>23M</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const parentContainer = document.querySelector('.manga-description-content');
+
+        parentContainer.addEventListener('click', event => {
+            const current = event.target;
+
+            const isReadMoreBtn = current.className.includes('read-more-btn');
+            
+            if(!isReadMoreBtn) return ;
+            const currentText =event.target.parentNode.querySelector('.read-more-text');
+            currentText.classList.toggle('read-more-text--show');
+
+            current.textContent =current.textContent.includes('Read More') ?
+
+            'Read Less...':'Read More';
+        })
+    </script>
+{% endblock %}

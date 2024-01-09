@@ -1,0 +1,294 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="slide-container swiper">
+        <div class="slide-content">
+            <div class="slide-header">
+                <p><i class="fa-solid fa-fire-flame-curved"></i> Truyện đang hot</p>
+            </div>
+            <div class="car-wrapper swiper-wrapper">
+                <div class="card swiper-slide">
+                    <div class="card-image">
+                        <div class = "info-popular_manga">
+                            <a href="">chapter 20</a>
+                        </div>
+                        <img src="images/img-manga/2.5D.jpg" alt="" class="card-img">
+                        <div>
+                        </div>
+                    </div>
+                    <div class = "manga-popular-title">
+                        <a href = "">Sự Quyến Rủ Của 2.5D</a>
+                    </div>
+                </div>
+                <div class="card swiper-slide">
+                    <div class="card-image">
+                        <div class = "info-popular_manga">
+                            <a href="">chapter 37</a>
+                        </div>
+                        <img src="images/img-manga/flower-blooms.jpg" alt="" class="card-img">
+                        <div>
+                        </div>
+                    </div>
+                    <div class = "manga-popular-title">
+                        <a href = "">kusuriya no hitorioto</a>
+                    </div>
+                </div>
+                <div class="card swiper-slide">
+                    <div class="card-image">
+                        <div class = "info-popular_manga">
+                            <a href="">chapter 40</a>
+                        </div>
+                        <img src="images/img-manga/akane-banashi.jpg" alt="" class="card-img">
+                        <div>
+                        </div>
+                    </div>
+                    <div class = "manga-popular-title">
+                        <a href = "">Akane Banashi</a>
+                    </div>
+                </div>
+                <div class="card swiper-slide">
+                    <div class="card-image">
+                        <div class = "info-popular_manga">
+                            <a href="">chapter 14</a>
+                        </div>
+                        <img src="images/img-manga/hon-the-nhat-nheo-cua-toi-chi-dang-yeu-khi-o-nha.jpg" alt="" class="card-img">
+                    </div>
+                    <div class = "manga-popular-title">
+                        <a href = "">hôn thê nhạt nhẽo của tôi chỉ đáng yêu khi ở nhà</a>
+                    </div>
+                </div>
+                <div class="card swiper-slide">
+                    <div class="card-image">
+                        <div class = "info-popular_manga">
+                            <a href="">chapter 17</a>
+                        </div>
+                        <img src="images/img-manga/Horimiya.jpg" alt="" class="card-img">
+                        <div>
+                        </div>
+                    </div>
+                    <div class = "manga-popular-title">
+                        <a href = "">horimiya</a>
+                    </div>
+                </div>
+                <div class="card swiper-slide">
+                    <div class="card-image">
+                        <div class = "info-popular_manga">
+                            <a href="">chapter 110</a>
+                        </div>
+                        <img src="images/img-manga/laid-back-camp.jpg" alt="" class="card-img">
+                        <div>
+                        </div>
+                    </div>
+                    <div class = "manga-popular-title">
+                        <a href = "">laid back camp</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <!-- main -->
+    <main>
+        <div class = "manga-items-container">
+            <div class="new-manga-updated">
+                <div class = "new-manga-updated-title">
+                    <p>truyen moi cap nhat</p>
+                </div>
+                <div class = "new-manga">
+                    {% for manga in pages.object_list %}
+                        <div class="manga-card">
+                            <div class = "manga-image">
+                                <span>{{manga.created|timesince}} ago</span>
+                                <a href = "{% url 'manga-room' manga.title %}"><img src="{{manga.image.url}}" alt=""></a>
+                                {% if request.user.is_superuser %}
+                                <div class="update-and-deletebutton">
+                                    <a class="update" href = "{% url 'update-manga' manga.id %}">update</a>
+                                    <a class="delete" href = "{% url 'delete-manga' manga.id %}">delete</a>
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class = "manga-thumnail-title">
+                                <a href="{% url 'manga-room' manga.title %}">{{manga.title|truncatechars:40}}</a>
+                            </div>
+                            <div class = "list-new-chapter">
+                                <ul>
+                                    
+                                    <li><a href="">chapter 1411</a><span>20 ngay truoc</span></li>
+                                    <li><a href="">chapter 1411</a><span>20 ngay truoc</span></li>
+                                    <li><a href="">chapter 1411</a><span>20 ngay truoc</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class= "pagination-container">
+                    <div class = "pagination">
+                        <!-- <button class="btn"><i class="fa-solid fa-angles-left"></i></button> -->
+                        {% if pages.has_previous %}
+                        <a href="{% url 'home' %}?page={{pages.previous_page_number}}"><button class = "btn"><i class="fa-solid fa-angle-left"></i></button></a>
+                        {% endif %}
+                        <ul>
+                            {% for page_num in pages.paginator.page_range %}
+                                {% if pages.number == page_num %}
+                                    <li class="link-page active"><a href="{% url 'home' %}?page={{page_num}}">{{page_num}}</a></li>
+                                {% else %}
+                                    <li class="link-page"><a href="{% url 'home' %}?page={{page_num}}">{{page_num}}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                        {% if pages.has_next %}
+                        <a href="{% url 'home' %}?page={{pages.next_page_number}}"><button class = "btn"><i class="fa-solid fa-angle-right"></i></button></a>
+                        <!-- <button class="btn"><i class="fa-solid fa-angles-right"></i></button> -->
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>  
+            <div class = "sidebar-items">
+                {% if user.manga_follows %}
+                    <div class = "manga-status-container">
+                        <div class="status-header">
+                            <p>truyen dang theo doi</p>
+                            <a href="">xem tat  ca</a>
+                        </div>
+                        <div class="status-manga-items">
+                            {% for manga in user.manga_follows.all %}
+                            <div class="status-manga">
+                                <div class="status-manga-image">
+                                    <a href=""><img src="{{manga.image.url}}" alt=""></a>
+                                </div>
+                                <div class="status-manga-thumnail">
+                                    <a href="{% url 'manga-room' manga.title %}" class = "status-manga-thumnail_title">{{manga.title|truncatechars:25}}</a>
+                                    <div class="new-updated-chapter">
+                                        <a href="{% url 'manga' manga.title manga.chapters.first %}">chapter {{manga.chapters.first}}</a> <span>{{manga.chapters.first.created|timesince}}</span>
+                                    </div>
+                                    <a href="" class = "continue-reading">doc tiep chapter</a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+                <div class = "manga-status-container">
+                    <div class="status-header">
+                        <p>lich su doc truyen</p>
+                        <a href="">xem tat  ca</a>
+                    </div>
+                    <div class="status-manga-items">
+                        <div class="status-manga">
+                            <div class="status-manga-image">
+                                <a href=""><img src="images/img-manga/akane-banashi.jpg" alt=""></a>
+                            </div>
+                            <div class="status-manga-thumnail">
+                                <a href="" class = "status-manga-thumnail_title">akane banashi</a>
+                                <div class="new-updated-chapter">
+                                    <a href="">chapter</a> <span>1 gio truoc</span>
+                                </div>
+                                <a href="" class = "continue-reading">doc tiep chapter</a>
+                            </div>
+                        </div>
+                        <div class="status-manga">
+                            <div class="status-manga-image">
+                                <a href=""><img src="images/img-manga/akane-banashi.jpg" alt=""></a>
+                            </div>
+                            <div class="status-manga-thumnail">
+                                <a href="" class = "status-manga-thumnail_title">akane banashi</a>
+                                <div class="new-updated-chapter">
+                                    <a href="">chapter</a> <span>1 gio truoc</span>
+                                </div>
+                                <a href="" class = "continue-reading">doc tiep chapter</a>
+                            </div>
+                        </div>
+                        <div class="status-manga">
+                            <div class="status-manga-image">
+                                <a href=""><img src="images/img-manga/akane-banashi.jpg" alt=""></a>
+                            </div>
+                            <div class="status-manga-thumnail">
+                                <a href="" class = "status-manga-thumnail_title">akane banashi</a>
+                                <div class="new-updated-chapter">
+                                    <a href="">chapter</a> <span>1 gio truoc</span>
+                                </div>
+                                <a href="" class = "continue-reading">doc tiep chapter</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class = "user-comments-container">
+                    <div class="comment-header">
+                        <p>binh luan moi</p>
+                    </div>
+                    <div class="comments-items">
+                        <div class="comments-of-manga">
+                            <a href="" class = "comment-manga-title">new prince of tennis</a><a href="" class = "comment-manga-chapter">chapter</a>
+                        </div>
+                        <div class="comments-of-user">
+                            <div class = "user-image">
+                                <a href=""><img src="images/img-manga/user_1.jpg" alt=""></a>
+                            </div>
+                            <div class="comment-of-user-content">
+                                <div class = "user-name-time">
+                                    <p class = "name">Đại Phú Bà</p>
+                                    <p class = "time">time</p>
+                                </div>
+                                <div class="comments-content">
+                                    <p>Ko biết thanh niên có sơ múi dc gì chưa hay là cho hút chùa</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="comments-items">
+                        <div class="comments-of-manga">
+                            <a href="" class = "comment-manga-title">new prince of tennis</a><a href="" class = "comment-manga-chapter">chapter</a>
+                        </div>
+                        <div class="comments-of-user">
+                            <div class = "user-image">
+                                <a href=""><img src="images/img-manga/user_1.jpg" alt=""></a>
+                            </div>
+                            <div class="comment-of-user-content">
+                                <div class = "user-name-time">
+                                    <p class = "name">Đại Phú Bà</p>
+                                    <p class = "time">time</p>
+                                </div>
+                                <div class="comments-content">
+                                    <p>Ko biết thanh niên có sơ múi dc gì chưa hay là cho hút chùa</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="comments-items">
+                        <div class="comments-of-manga">
+                            <a href="" class = "comment-manga-title">new prince of tennis</a><a href="" class = "comment-manga-chapter">chapter</a>
+                        </div>
+                        <div class="comments-of-user">
+                            <div class = "user-image">
+                                <a href=""><img src="images/img-manga/user_1.jpg" alt=""></a>
+                            </div>
+                            <div class="comment-of-user-content">
+                                <div class = "user-name-time">
+                                    <p class = "name">Đại Phú Bà</p>
+                                    <p class = "time">time</p>
+                                </div>
+                                <div class="comments-content">
+                                    <p>Ko biết thanh niên có sơ múi dc gì chưa hay là cho hút chùa</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- navb -->
+
+    <!-- slide -->
+    <!-- dropdown user js -->
+{% endblock %}

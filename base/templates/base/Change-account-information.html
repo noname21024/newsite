@@ -1,0 +1,55 @@
+{% extends 'base/user_page.html' %}
+{% load widget_tweaks %}
+{% block user-content %}
+<div class="box-change-infomation">
+    <div class="account-info">
+        <div class="header">
+            Thông tin tài khoản
+        </div>
+        <div class="account-info-header">
+            <p>Chỉnh sửa thông tin</p>
+        </div>
+        <div class="change-infomation-of-user">
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="account-info-items-box">
+                    <div class="username">
+                        <label for="">Tai khoan</label>
+                        <input type="text" value="{{user.username}}" disabled>
+                    </div>
+                    <div class="email">
+                        <label for="useremail">dia chi email</label>
+                        <!-- <input type="email" value="{{user.email}}"> -->
+                        {% render_field u_form.email id='useremail' %}
+                        <a href="">thay doi email</a>
+                    </div>
+                    <div class = "name">
+                        <label for="name">name</label>
+                        <!-- <input type="text"> -->
+                        {% render_field u_form.first_name id='name' %}
+                    </div>                 
+                    <div class="sex">
+                        <label for="sexs">gioi tinh</label>
+                        <select name="sexs" id="sexs">
+                          <option value="nam">nam</option>
+                          <option value="nu">nu</option>
+                        </select>
+                    </div>           
+                    <button class = 'update-user-button' type ='submit'>Cap nhat</button>
+
+                </div>  
+                <div class="change-image-user">
+                    <div class = 'current-image-of-user'>
+                        <figure>
+                            <img src="{{user.profile.image.url}}" id = 'choose-image'>
+                        </figure>
+                        <label for="uploadimage" class = 'custom-file-upload'><i class="fa-solid fa-upload"></i>Upload ảnh</label>
+                        <!-- <input type="file" id = 'uploadimage'> -->
+                        {% render_field p_form.image id='uploadimage' %}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

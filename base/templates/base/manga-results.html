@@ -1,0 +1,21 @@
+{% if results %}
+    {% for manga in results %}
+        <a href="{% url 'manga-room' manga.title %}">
+            <div class="manga-render-card">
+                <div class="manga-render">
+                    <div class="manga-render-image">
+                        <img src="{{manga.image.url}}" alt="">
+                    </div>
+                </div>
+                <div class="manga-render-infomation">
+                    <a href="" class = 'manga-render-title'>{{manga.title}}</a>
+                    <a href="" class = 'manga-render-chapter-new'>Chapter {{manga.chapters.first}}</a>
+                </div>
+            </div>
+        </a>
+    {% endfor %}
+{% else %}
+        <div class="not-exists-results">
+            <p>No results found!</p>
+        </div>
+{% endif %}
